@@ -1,9 +1,12 @@
-import express from "express";
+import express, { json } from "express";
+import { configDotenv } from "dotenv";
 
 const app = express();
+configDotenv();
 
+app.use(json())
 app.get("/", (req, res) => {
-  res.send("oto = [1, 2, 3]");
+  res.send('hi');
 });
 
 const PORT = process.env.PORT ?? 6544;
