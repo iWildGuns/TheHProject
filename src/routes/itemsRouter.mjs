@@ -1,3 +1,5 @@
 import { Router } from "express";
 
-export const itemsRouter = Router()
+const itemsRouter = Router()
+
+export default itemsRouter
