@@ -1,11 +1,10 @@
 import { Router } from "express";
-import * as productController from "../controllers/productController.mjs";
+import { ProductController } from "../controllers/productController.mjs";
 
-    const router = Router()
+const productController = new ProductController();
+const Productrouter = Router();
 
-    router.get('/', productController.index)
-    router.get('/:id', productController.show)
+Productrouter.get("/", productController.index);
+Productrouter.get("/:id", productController.show);
 
-    export default router
-// Import the items controller
-
+export default Productrouter;

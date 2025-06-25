@@ -1,21 +1,23 @@
-import {sequelize, DataTypes} from './Sequelize.mjs' 
+import { sequelize, DataTypes } from "./Sequelize.mjs";
 
-// export default (sequelize, DataTypes) => { 
+// export default (sequelize, DataTypes) => {
 
-    const Product = sequelize.define("products", {
-    productId:{
+const Product = sequelize.define(
+  "products",
+  {
+    productId: {
       type: DataTypes.INTEGER,
       unique: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     productName: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     productDescription: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     price: {
       type: DataTypes.DECIMAL(10, 2),
@@ -30,7 +32,7 @@ import {sequelize, DataTypes} from './Sequelize.mjs'
       type: DataTypes.STRING(50),
       unique: true,
       allowNull: false,
-      default: ''
+      default: "",
     },
     imgUrl: {
       type: DataTypes.STRING(255),
@@ -44,17 +46,19 @@ import {sequelize, DataTypes} from './Sequelize.mjs'
       type: DataTypes.STRING(100),
       allowNull: true,
     },
-    categoryId: { 
+    categoryId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'categories',
-        key: 'categoryId',
-      }
-    }}, 
-    {
-        tableName: 'products',
-        timestamps: true
-    })
-    export default Product
+        model: "categories",
+        key: "categoryId",
+      },
+    },
+  },
+  {
+    tableName: "products",
+    timestamps: true,
+  }
+);
+export default Product;
 // }

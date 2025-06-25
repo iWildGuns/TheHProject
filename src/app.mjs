@@ -5,6 +5,7 @@ configDotenv()
 // import { fileURLToPath } from "url"; 
 import db from "./models/db/Sequelize.mjs";
 import productRoutes from './routes/productRoutes.mjs'
+import categoryRouter from "./routes/categoryRoutes copy.mjs";
 
 // const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const { sequelize } = db
@@ -21,9 +22,10 @@ const app = express();
 app.use(json())
 
 app.use('/api/productos', productRoutes)
+app.use('/api/categorias', categoryRouter)
 
 const PORT = process.env.PORT ?? 6544;
 
 app.listen(PORT, () => {
-  console.log(`Listen in the port http:localhost:${PORT}`);
+  console.log(`Listen in the port http://localhost:${PORT}`);
 });
