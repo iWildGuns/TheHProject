@@ -1,18 +1,29 @@
 import express, { json } from "express";
 import { configDotenv } from "dotenv";
-import { itemsRouter } from "./routes/itemsRouter.mjs";
+configDotenv()
+// import path from "path";
+// import { fileURLToPath } from "url"; 
+import db from "./models/db/Sequelize.mjs";
+import productRoutes from './routes/productRoutes.mjs'
+
+// const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const { sequelize } = db
+
+
+try {
+  await sequelize.authenticate()
+  console.log('Coneccion establecida')
+} catch (err) {
+  console.log('Coneccion no establecida', err)
+}
 
 const app = express();
-configDotenv();
-
 app.use(json())
-app.get("/hi", (req, res) => {
-  res.send('hi');
-});
-app.get('/', itemsRouter)
+
+app.use('/api/productos', productRoutes)
 
 const PORT = process.env.PORT ?? 6544;
 
 app.listen(PORT, () => {
-  console.log(`Listen in the port http:localhost:${PORT} ${process.env.NODE_ENV}`);
+  console.log(`Listen in the port http:localhost:${PORT}`);
 });
